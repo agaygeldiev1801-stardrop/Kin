@@ -22,7 +22,7 @@
   --good: #00ff6a;  /* green */
   --once: #00aaff;  /* blue */
   --lost: #6a6a6a;  /* grey — slightly lighter */
-  --avoid:#ccff00;  /* toxic — more vivid */
+--avoid:#bf00ff;  /* toxic violet */
 
   /* TYPES — light/pastel, different concept from categories */
   --tf: rgba(144,208,255,.95);  /* film */
@@ -167,7 +167,7 @@ header{flex-shrink:0;z-index:10;position:relative;padding:calc(14px + var(--safe
 .card.good  .cbar::after{background:linear-gradient(180deg,var(--good),transparent);}
 .card.once  .cbar::after{background:linear-gradient(180deg,var(--once),transparent);}
 .card.lost  .cbar::after{background:linear-gradient(180deg,var(--lost),transparent);}
-.card.avoid .cbar::after{background:linear-gradient(180deg,#7ec800,transparent);}
+.card.avoid .cbar::after{background:linear-gradient(180deg,#bf00ff,transparent);}
 
 .cb{flex:1;padding:15px 17px 14px 14px;min-width:0;}
 .c-r1{display:flex;align-items:center;gap:9px;margin-bottom:3px;}
@@ -207,7 +207,7 @@ header{flex-shrink:0;z-index:10;position:relative;padding:calc(14px + var(--safe
 .cc-good{background:rgba(0,255,106,.18);border:1px solid rgba(0,255,106,.42);}
 .cc-once{background:rgba(0,170,255,.18);border:1px solid rgba(0,170,255,.42);}
 .cc-lost{background:rgba(88,88,88,.22);border:1px solid rgba(88,88,88,.4);}
-.cc-avoid{background:rgba(204,255,0,.18);border:1px solid rgba(204,255,0,.42);}
+.cc-avoid{background:rgba(191,0,255,.18);border:1px solid rgba(191,0,255,.42);}
 
 /* FAV glow effect on card */
 .card.fav .c-title{text-shadow:0 0 32px rgba(255,40,0,.35);}
@@ -422,7 +422,7 @@ header{flex-shrink:0;z-index:10;position:relative;padding:calc(14px + var(--safe
 .cr.s-lost{border-color:rgba(88,88,88,.4);background:rgba(88,88,88,.06);}
 .cr.s-lost .cr-num,.cr.s-lost .cr-name{color:var(--lost);}
 .cr.s-lost .cr-chk{border-color:var(--lost);} .cr.s-lost .cr-chk-d{background:var(--lost);}
-.cr.s-avoid{border-color:rgba(204,255,0,.4);background:rgba(204,255,0,.06);}
+.cr.s-avoid{border-color:rgba(191,0,255,.4);background:rgba(191,0,255,.06);}
 .cr.s-avoid .cr-num,.cr.s-avoid .cr-name{color:var(--avoid);}
 .cr.s-avoid .cr-chk{border-color:var(--avoid);} .cr.s-avoid .cr-chk-d{background:var(--avoid);}
 
@@ -593,7 +593,7 @@ const BG_W=['CINEMA','КИНО','FILM','ДРАМА','AUTEUR','NOIR','SÉQUENCE',
 const BG_Q=['"Каждый кадр — решение"','"Кино — правда 24 раза в секунду"','"Every frame a painting"','"Cinema is a mirror"','"Великое кино меняет тебя"'];
 
 // CAT_CLR maps category id to CSS color value
-const CAT_CLR={hall:'#ffca00',good:'#00ff6a',once:'#00aaff',lost:'#6a6a6a',avoid:'#ccff00',fav:'#ff2800','':'#504a42'};
+const CAT_CLR={hall:'#ffca00',good:'#00ff6a',once:'#00aaff',lost:'#6a6a6a',avoid:'#bf00ff',fav:'#ff2800','':'#504a42'};
 
 let M=JSON.parse(localStorage.getItem('kino_v16')||'[]');
 ['kino_v15','kino_v14','kino_v13','kino_v12'].forEach(k=>{
