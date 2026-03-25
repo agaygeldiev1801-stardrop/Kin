@@ -744,9 +744,7 @@ let M = JSON.parse(localStorage.getItem('kino_v15')||'[]');
 ['kino_v14','kino_v13','kino_v12','kino_v11'].forEach(k=>{
   if(!M.length){try{const d=localStorage.getItem(k);if(d){M=JSON.parse(d);save();}}catch(e){}}
 });
-['kino_v15','kino_v14','kino_v13','kino_v12'].forEach(k=>{
-  if(!M.length){try{const d=localStorage.getItem(k);if(d){M=JSON.parse(d);save();}}catch(e){}}
-});
+
 
 let tab='watched',fT=[],fC=[],fG=[],fRmin=0,fYfrom='',fYto='',sort='alpha',pOpen=false;
 let eId=null,_st='watched',_cats=[],_genres=[],_rating=0,_isFav=false,_type='film',_seasons=[],_kp='',_quote='',_note='';
