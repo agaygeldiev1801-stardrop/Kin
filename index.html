@@ -1157,7 +1157,11 @@ if(‘serviceWorker’ in navigator){
 const sw=`const C='kino-v15-r3';self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll([self.location.pathname])));self.skipWaiting();});self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))));});self.addEventListener('fetch',e=>{e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(res=>{const cl=res.clone();caches.open(C).then(c=>c.put(e.request,cl));return res;})));});`;
 navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:‘application/javascript’}))).catch(()=>{});
 }
+try {
 buildBG();render();
+} catch(e) {
+document.body.innerHTML += ’<div style="position:fixed;top:0;left:0;right:0;background:red;color:white;padding:20px;z-index:99999;font-size:14px;word-break:break-all">JS ERROR: ’ + e.message + ‘<br>’ + e.stack + ‘</div>’;
+}
 </script>
 
 </body>
