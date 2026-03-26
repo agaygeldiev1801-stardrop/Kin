@@ -114,7 +114,7 @@ border-bottom:1px solid var(--g2);backdrop-filter:blur(24px)}
 .empty-g{font-family:var(--sf);font-weight:300;font-style:italic;font-size:110px;color:var(--bg5);line-height:1}
 .empty-t{font-family:var(--mn);font-size:7px;letter-spacing:.34em;text-transform:uppercase;color:var(--w4);text-align:center;line-height:2.8}
 .adiv{display:flex;align-items:stretch;border-bottom:2px solid var(--g2);background:rgba(8,9,14,.92);backdrop-filter:blur(10px);position:sticky;top:0;z-index:4}
-.adiv-letter{font-family:var(--cp);font-size:38px;color:var(--red);padding:4px 14px;border-right:2px solid var(--g2);min-width:58px;text-align:center;line-height:1;text-shadow:0 0 24px rgba(232,72,48,.7)}
+.adiv-letter{font-family:var(--cp);font-size:38px;color:var(--w);padding:4px 14px;border-right:2px solid var(--g2);min-width:58px;text-align:center;line-height:1;text-shadow:none}
 .adiv-info{display:flex;align-items:center;padding:0 14px}
 .adiv-cnt{font-family:var(--mn);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:var(--w4)}
 
@@ -131,10 +131,10 @@ border-bottom:1px solid var(--g2);backdrop-filter:blur(24px)}
 .c-body{flex:1;padding:14px 14px 13px 14px;min-width:0}
 .cbar-right{width:4px;flex-shrink:0;background:linear-gradient(180deg,var(--red),transparent)}
 .tbadge{font-family:var(--mn);font-size:7px;letter-spacing:.1em;text-transform:uppercase;flex-shrink:0;padding:2px 7px;border-radius:12px}
-.tb-film{background:rgba(232,72,48,.12);color:var(--red);border:1px solid rgba(232,72,48,.25)}
-.tb-series,.tb-aniseries{background:rgba(56,168,232,.1);color:var(--blu);border:1px solid rgba(56,168,232,.22)}
-.tb-cartoon{background:rgba(40,200,112,.1);color:var(--grn);border:1px solid rgba(40,200,112,.22)}
-.tb-anime{background:rgba(232,168,40,.12);color:var(--gold);border:1px solid rgba(232,168,40,.25)}
+.tb-film{background:rgba(246,242,234,.08);color:var(--w2);border:1px solid rgba(246,242,234,.16)}
+.tb-series{background:rgba(246,242,234,.08);color:var(--w2);border:1px solid rgba(246,242,234,.16)}
+.tb-cartoon{background:rgba(246,242,234,.08);color:var(--w2);border:1px solid rgba(246,242,234,.16)}
+.tb-anime{background:rgba(246,242,234,.08);color:var(--w2);border:1px solid rgba(246,242,234,.16)}
 .cg,.ccat{font-family:var(--mn);font-size:7px;letter-spacing:.07em;text-transform:uppercase;padding:3px 9px;border:1px solid var(--g2);color:var(--w3);border-radius:12px}
 .ccat{color:var(--w)}
 .cc-hall{background:rgba(255,202,0,.2);border-color:rgba(255,202,0,.4)}
@@ -192,7 +192,7 @@ border-bottom:1px solid var(--g2);backdrop-filter:blur(24px)}
 #fab{position:fixed;bottom:calc(22px + var(--safe-b));right:18px;width:58px;height:58px;background:var(--w);border:none;border-radius:4px;cursor:pointer;z-index:100;box-shadow:0 8px 32px rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center}
 #fab svg{width:22px;height:22px;fill:var(--bg)}
 .ov{position:fixed;inset:0;z-index:200;background:rgba(8,9,14,.9);display:flex;align-items:flex-end}
-.modal{width:100%;background:var(--bg2);border-top:2px solid var(--g3);border-radius:20px 20px 0 0;padding:0 0 calc(22px + var(--safe-b));max-height:96vh;overflow-y:auto}
+.modal{width:100%;max-width:760px;margin:0 auto;background:var(--bg2);border-top:2px solid var(--g3);border-radius:20px 20px 0 0;padding:0 0 calc(22px + var(--safe-b));max-height:96vh;overflow-y:auto}
 .mhnd{width:40px;height:4px;background:var(--g3);border-radius:2px;margin:13px auto 0}
 .mhd{padding:13px 20px 14px;display:flex;align-items:flex-start;justify-content:space-between;border-bottom:1px solid var(--g1)}
 .mhd-sub{font-family:var(--mn);font-size:7px;letter-spacing:.24em;text-transform:uppercase;color:var(--w4);margin-bottom:4px}
@@ -204,7 +204,7 @@ border-bottom:1px solid var(--g2);backdrop-filter:blur(24px)}
 .fi,.ft{font-size:20px}
 .fi::placeholder,.ft::placeholder,.yrinp::placeholder{color:var(--w4);font-style:italic}
 .ft{resize:none;height:84px;line-height:1.6}
-.r2{display:flex;gap:10px}
+.r2{display:flex;gap:12px;align-items:stretch}
 .r2>div{flex:1}
 .type-grid,.stog{display:grid;grid-template-columns:1fr 1fr;gap:6px}
 .topt,.sopt{padding:13px 6px;text-align:center;font-family:var(--mn);font-size:8px;letter-spacing:.12em;cursor:pointer;border:1px solid var(--g2);background:transparent;color:var(--w4);border-radius:2px;text-transform:uppercase}
@@ -312,11 +312,46 @@ border-bottom:1px solid var(--g2);backdrop-filter:blur(24px)}
   .st-genre-name,.st-dir-name,.st-cat-name{font-size:16px}
   .st-bestworst{flex-direction:column;gap:14px}
   .st-bw+.st-bw{border-left:none;border-top:1px solid var(--g1);padding-left:0;padding-top:14px}
-  .r2{flex-direction:column}
   .sl-top{align-items:flex-start;flex-direction:column}
   .sl-num{font-size:56px}
   .sp-title{font-size:32px}
 }
+
+@media (max-width:700px){
+  .plat-row{display:grid !important;grid-template-columns:44px 42px 1fr 28px !important;gap:10px !important;align-items:center !important}
+}
+
+
+/* v21 polish */
+.card{padding:2px 0}
+.c-body{padding:16px 16px 15px 14px}
+.card:hover{background:rgba(255,255,255,.022)}
+.tbadge{font-size:6.8px;letter-spacing:.12em}
+.cg{background:rgba(255,255,255,.02)}
+.modal{box-shadow:0 -20px 60px rgba(0,0,0,.45)}
+.fb{gap:20px;padding:20px}
+.flbl{margin-bottom:8px}
+.fact{padding:8px 20px 0}
+.bsave,.bdel,.bedit,.bexp,.bimp,.sp-ag,.sp-cl{font-size:7.5px;letter-spacing:.2em}
+.plat-wrap{background:var(--bg3);border:1px solid var(--g2);border-radius:2px;padding:14px}
+.plat-row{display:grid !important;grid-template-columns:52px 44px 1fr 30px !important;gap:12px !important;align-items:center !important}
+.plat-row + .plat-row{margin-top:12px}
+.plat-label{font-family:var(--mn);font-size:7px;letter-spacing:.14em;color:#f5c518;text-transform:uppercase}
+.plat-num{font-family:var(--sf);font-style:italic;font-size:24px;color:#f5c518;min-width:36px}
+.plat-max{font-size:8px;color:var(--w4)}
+.si{border-color:rgba(255,255,255,.08)}
+.si-hd{background:rgba(255,255,255,.015)}
+.add-s{padding:14px}
+.det-notes{gap:10px}
+.det-note{padding:15px 16px}
+.empty-t{line-height:2.5}
+@media (max-width:700px){
+  .modal{max-width:100%}
+  .fb{padding:18px}
+  .plat-row{grid-template-columns:46px 42px 1fr 26px !important;gap:10px !important}
+  .det-title{font-size:30px}
+}
+
 </style>
 </head>
 <body>
@@ -365,7 +400,6 @@ border-bottom:1px solid var(--g2);backdrop-filter:blur(24px)}
     <div class="apbar" id="apbar"></div>
     <div class="fpanel" id="fpanel">
       <div class="fsec"><div class="fhd">Тип</div><div class="chips" id="fTchips"></div></div>
-      <div class="fsec" id="fCsec"><div class="fhd">Категория</div><div class="chips" id="fCchips"></div></div>
       <div class="fsec"><div class="fhd">Жанр</div><div class="chips" id="fGchips"></div></div>
       <div class="fsec">
         <div class="fhd">Год</div>
@@ -408,13 +442,12 @@ const CATS=[
   {id:'avoid',name:'Не трогай это',    desc:'Обходи стороной',  range:'1.0 – 2.75', num:'VI',  clr:'#9050cc'},
 ];
 const TYPES=[
-  {id:'film',      name:'⏿ Фильм',               hasSeas:false},
-  {id:'series',    name:'▤ Сериал',              hasSeas:true},
-  {id:'cartoon',   name:'✺ Анимация',            hasSeas:false},
-  {id:'aniseries', name:'⊚ Анимационный сериал', hasSeas:true},
-  {id:'anime',     name:'彡 Аниме',              hasSeas:false},
+  {id:'film',    name:'⏿ Фильм',    hasSeas:false},
+  {id:'cartoon', name:'✺ Анимация', hasSeas:true},
+  {id:'series',  name:'▤ Сериал',   hasSeas:true},
+  {id:'anime',   name:'彡 Аниме',   hasSeas:false},
 ];
-const GENRES=['Анимация','Биография','Боевик','Вестерн','Военный','Детектив','Документальный','Драма','Исторический','Катастрофа','Комедия','Криминал','Мелодрама','Мюзикл','Приключения','Психологический','Романтический','Семейный','Спорт','Супергероика','Триллер','Ужасы','Фантастика','Фэнтези'];
+const GENRES=['Биография','Боевик','Вестерн','Военный','Детектив','Документальный','Драма','Исторический','Катастрофа','Комедия','Криминал','Мелодрама','Мюзикл','Приключения','Психологический','Романтический','Семейный','Спорт','Супергероика','Триллер','Ужасы','Фантастика','Фэнтези'];
 const SORTS=[{id:'alpha',l:'А–Я'},{id:'year_d',l:'Год ↓'},{id:'year_a',l:'Год ↑'},{id:'rat_d',l:'Оценка ↓'},{id:'rat_a',l:'Оценка ↑'},{id:'new',l:'Новые'}];
 const BG_W=['CINEMA','КИНО','FILM','ДРАМА','AUTEUR','NOIR','SEQUENCE','MONTAGE','КАДР','АРХИВ','СВЕТ','ТЕНЬ','ВЗГЛЯД'];
 const BG_Q=['"Каждый кадр — решение"','"Кино — правда 24 раза в секунду"','"Every frame a painting"','"Cinema is a mirror"','"Великое кино меняет тебя"'];
@@ -440,7 +473,7 @@ const byTId=id=>TYPES.find(t=>t.id===id);
 const esc=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 function fmt(r){ if(!r) return '—'; const n=Number(r),s=n.toFixed(2); if(s.endsWith('00')) return n.toFixed(0); if(s.endsWith('0')) return n.toFixed(1); return s; }
 const avgS=ss=>{const r=(ss||[]).filter(s=>s.r>0); return r.length?r.reduce((a,s)=>a+s.r,0)/r.length:0;};
-const isSeasType=m=>['series','aniseries'].includes(m.type);
+const isSeasType=m=>['series','cartoon'].includes(m.type);
 const effR=m=>{ if(isSeasType(m)&&m.seasons&&m.seasons.length){ const a=avgS(m.seasons); return a||m.rating||0; } return m.rating||0; };
 function autocat(r){ if(!r||r<=0) return ''; if(r>=9) return 'hall'; if(r>=7) return 'good'; if(r>=5) return 'once'; if(r>=3) return 'lost'; return 'avoid'; }
 function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toast._id); toast._id=setTimeout(()=>t.classList.remove('show'),2200); }
@@ -497,10 +530,8 @@ function render(){
 }
 
 function buildFilters(){
-  document.getElementById('fCsec').style.display=tab==='want'?'none':'';
   document.getElementById('fRsec').style.display=tab==='want'?'none':'';
   document.getElementById('fTchips').innerHTML=TYPES.map(t=>`<button class="chip ${fT.includes(t.id)?'on':''}" onclick="tFT('${t.id}')">${t.name}</button>`).join('');
-  document.getElementById('fCchips').innerHTML=CATS.filter(c=>c.id!=='fav').map(c=>`<button class="chip ${fC.includes(c.id)?'on':''}" onclick="tFC('${c.id}')">${c.name}</button>`).join('');
   const ug=[...new Set(M.filter(m=>m.status===tab).flatMap(m=>m.genres||[]))].sort();
   document.getElementById('fGchips').innerHTML=ug.length?ug.map(g=>`<button class="chip ${fG.includes(g)?'on':''}" onclick="tFG('${g}')">${g}</button>`).join(''):'<span style="color:var(--w4);font-size:10px">—</span>';
   document.getElementById('fsorts').innerHTML=SORTS.map(s=>`<button class="srt ${sort===s.id?'on':''}" onclick="setSort('${s.id}')">${s.l}</button>`).join('');
@@ -513,7 +544,6 @@ function buildFilters(){
 function buildPills(){
   const items=[
     ...fT.map(id=>{const t=byTId(id);return t?{l:t.name,rm:()=>{fT=fT.filter(x=>x!==id);render();}}:null;}),
-    ...fC.map(id=>{const c=byId(id);return c?{l:c.name,rm:()=>{fC=fC.filter(x=>x!==id);render();}}:null;}),
     ...fG.map(g=>({l:g,rm:()=>{fG=fG.filter(x=>x!==g);render();}})),
     ...(fRmin>0?[{l:`≥${fmt(fRmin)}`,rm:()=>{fRmin=0;render();}}]:[]),
     ...((fYfrom||fYto)?[{l:`${fYfrom||'…'}–${fYto||'…'}`,rm:()=>{fYfrom='';fYto='';const a=document.getElementById('yr-from');const b=document.getElementById('yr-to'); if(a)a.value=''; if(b)b.value=''; render();}}]:[])
@@ -532,7 +562,6 @@ function buildList(){
   let items=M.filter(m=>{
     if(m.status!==tab) return false;
     if(fT.length&&!fT.includes(m.type||'film')) return false;
-    if(fC.length&&!(m.cats||[]).some(c=>fC.includes(c))) return false;
     if(fG.length&&!(m.genres||[]).some(g=>fG.includes(g))) return false;
     if(fRmin>0&&effR(m)<fRmin) return false;
     if(fYfrom||fYto){
@@ -593,7 +622,7 @@ function cardH(m,idx){
         ${hasSeas?`<span style="font-size:8px;color:var(--w4)">${m.seasons.length} сез</span>`:''}
         ${(m.genres||[]).slice(0,2).map(g=>`<span class="cg">${g}</span>`).join('')}
       </div>
-      ${(nonFavCats.length||hasFav)?`<div style="display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin-bottom:${m.quote?'4':'0'}px">${nonFavCats.map(id=>{const c=byId(id);return c?`<span class="ccat cc-${c.id}">${c.name}</span>`:''}).join('')}${hasFav?`<span class="ccat cc-fav" style="margin-left:auto">Любимое</span>`:''}</div>`:''}
+      
       ${m.quote?`<div style="font-family:var(--sf);font-style:italic;font-size:13px;color:var(--w4);display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden">"${esc(m.quote)}"</div>`:''}
     </div>
     ${hasFav?'<div class="cbar-right"></div>':''}
@@ -615,7 +644,7 @@ function buildStats(){
   const topDirs=Object.entries(dirMap).sort((a,b)=>b[1]-a[1]).slice(0,5);
   const buckets=Array(10).fill(0); rated.forEach(m=>{const i=Math.min(9,Math.max(0,Math.ceil(effR(m))-1)); buckets[i]++;});
   const maxB=Math.max(...buckets,1);
-  const typeColors={film:'var(--red)',series:'var(--blu)',cartoon:'var(--grn)',aniseries:'var(--blu)',anime:'var(--gold)'};
+  const typeColors={film:'var(--w2)',series:'var(--w2)',cartoon:'var(--w2)',anime:'var(--w2)'};
 
   document.getElementById('list').innerHTML=`<div class="stats-wrap">
     <div class="bkcard">
@@ -629,7 +658,6 @@ function buildStats(){
       <div class="st-hero-right">${avg?`<div class="st-hero-avg">${fmt(avg)}<span class="st-hero-avg-max">/10</span></div><div class="st-hero-avg-lbl">средняя оценка</div>`:'<div class="st-hero-avg-lbl" style="font-size:11px;color:var(--w4)">нет оценок</div>'}</div>
     </div>
     ${TYPES.some(t=>byType[t.id]>0)?`<div class="st-types">${TYPES.filter(t=>byType[t.id]).map(t=>`<div class="st-type-cell"><div class="st-type-n" style="color:${typeColors[t.id]}">${byType[t.id]}</div><div class="st-type-l">${t.name}</div></div>`).join('')}</div>`:''}
-    ${catC.some(c=>c.cnt)?`<div class="sc"><div class="sc-hd">По категориям</div>${catC.filter(c=>c.cnt).map(c=>`<div class="st-cat-row"><div class="st-cat-left"><div class="st-cat-dot" style="background:${c.clr};box-shadow:0 0 8px ${c.clr}55"></div><div class="st-cat-name">${c.name}</div></div><div class="st-cat-bar-wrap"><div class="st-cat-bar" style="width:${Math.round(c.cnt/maxC*100)}%;background:${c.clr}"></div></div><div class="st-cat-num" style="color:${c.clr}">${c.cnt}</div></div>`).join('')}</div>`:''}
     ${rated.length?`<div class="sc"><div class="sc-hd">Распределение оценок</div><div class="st-hist">${buckets.map((n,i)=>{const col=CAT_CLR[autocat(i+.5)]||'var(--w4)';const pct=n?Math.max(6,Math.round(n/maxB*100)):0;return `<div class="st-hist-col"><div class="st-hist-n" style="color:${col}">${n||''}</div><div class="st-hist-bar-wrap"><div class="st-hist-bar" style="height:${pct}%;background:${col}"></div></div><div class="st-hist-lbl">${i+1}</div></div>`;}).join('')}</div>${topFilm?`<div class="st-bestworst"><div class="st-bw"><div class="st-bw-lbl">Лучший</div><div class="st-bw-title">${esc(topFilm.title)}</div><div class="st-bw-score" style="color:var(--gold)">${fmt(effR(topFilm))}</div></div>${worstFilm&&worstFilm.id!==topFilm.id?`<div class="st-bw"><div class="st-bw-lbl">Худший</div><div class="st-bw-title">${esc(worstFilm.title)}</div><div class="st-bw-score" style="color:var(--gry)">${fmt(effR(worstFilm))}</div></div>`:''}</div>`:''}</div>`:''}
     ${topG.length?`<div class="sc"><div class="sc-hd">Жанры</div>${topG.map(([g,n],i)=>`<div class="st-genre-row"><div class="st-genre-idx">${String(i+1).padStart(2,'0')}</div><div class="st-genre-name">${g}</div><div class="st-genre-bar-wrap"><div class="st-genre-bar" style="width:${Math.round(n/maxG*100)}%"></div></div><div class="st-genre-num">${n}</div></div>`).join('')}</div>`:''}
     ${topDirs.length?`<div class="sc"><div class="sc-hd">Режиссёры</div>${topDirs.map(([name,n],i)=>`<div class="st-dir-row"><div class="st-dir-num">${String(i+1).padStart(2,'0')}</div><div class="st-dir-name">${esc(name)}</div><div class="st-dir-cnt">${n} ${n===1?'фильм':n<5?'фильма':'фильмов'}</div></div>`).join('')}</div>`:''}
@@ -668,10 +696,10 @@ function setR(raw){
   const num=document.getElementById('slnum'); if(num){ num.textContent=v?fmt(v):'—'; num.style.color=col; }
   const sc=document.getElementById('slcat'); if(sc){ sc.textContent=c?c.name:'Нет оценки'; sc.style.color=col; }
   const inp=document.getElementById('slinp'); if(inp) inp.style.background=`linear-gradient(90deg,${col} ${pct}%,rgba(255,255,255,.12) ${pct}%)`;
-  if(!_isFav){ _cats=cat?[cat]:[]; const cl=document.getElementById('catlist'); if(cl) cl.innerHTML=catListH(); }
+  if(!_isFav){ _cats=cat?[cat]:[]; }
 }
 function favH(){ return `<div class="fav-tog ${_isFav?'on':''}" id="favtog" onclick="togFav()"><div class="fav-pip"></div><div class="fav-name">Любимое</div><div class="fav-hint">Личное и близкое</div></div>`; }
-function togFav(){ _isFav=!_isFav; if(_isFav)_cats=['fav']; else { const cat=autocat(_rating); _cats=cat?[cat]:[]; } const ft=document.getElementById('favtog'); if(ft) ft.outerHTML=favH(); const cl=document.getElementById('catlist'); if(cl) cl.innerHTML=catListH(); }
+function togFav(){ _isFav=!_isFav; if(_isFav)_cats=['fav']; else { const cat=autocat(_rating); _cats=cat?[cat]:[]; } const ft=document.getElementById('favtog'); if(ft) ft.outerHTML=favH(); }
 function sH(){
   const avg=avgS(_seasons);
   return `<div class="sw" id="sw">${_seasons.map((s,i)=>{const col=CAT_CLR[autocat(s.r||0)]||CAT_CLR[''];const pct=(s.r||0)/10*100; return `<div class="si"><div class="si-hd"><div class="si-lbl">Сезон ${i+1}</div><div class="si-r"><div class="si-val" style="color:${col}">${s.r?fmt(s.r):'—'}</div><button class="si-del" onclick="delS(${i})">×</button></div></div><div class="si-body"><input type="range" class="si-sl" min="0" max="10" step="0.25" value="${s.r||0}" style="background:linear-gradient(90deg,${col} ${pct}%,rgba(255,255,255,.12) ${pct}%)" oninput="setSR(${i},parseFloat(this.value))"></div></div>`;}).join('')}<button class="add-s" onclick="addS()">+ Добавить сезон</button>${_seasons.some(s=>s.r>0)?`<div class="avg-box"><div class="avg-n">${fmt(avg)}</div><div class="avg-l">/ 10 · среднее по сезонам</div></div>`:''}</div>`;
@@ -699,6 +727,11 @@ function togSt(s){
   document.getElementById('st-x').className='sopt'+(s==='want'?' sx':'');
   const ws=document.getElementById('wsec'); if(ws) ws.style.display=s==='want'?'none':'';
 }
+function updExtRating(numId,inpId,v,col){
+  const n=Math.round(parseFloat(v)*10)/10;
+  const el=document.getElementById(numId); if(el) el.textContent=n?n.toFixed(1):'—';
+  const inp=document.getElementById(inpId); if(inp) inp.style.background=`linear-gradient(90deg,${col} ${n*10}%,rgba(255,255,255,.12) ${n*10}%)`;
+}
 function formH(m,isEdit){
   const t=byTId(_type), hasSeas=t?.hasSeas===true;
   return `<div class="mhnd"></div><div class="mhd"><div><div class="mhd-sub">${isEdit?'Редактирование':'Новая запись'}</div><div class="mhd-title">${isEdit?esc(m.title):'Добавить'}</div></div><button class="mcls" onclick="closeM()">×</button></div>
@@ -712,8 +745,25 @@ function formH(m,isEdit){
     </div>
     <div><div class="flbl">Статус</div><div class="stog"><button class="sopt ${_st==='watched'?'sw':''}" id="st-w" onclick="togSt('watched')">✓ Посмотрел</button><button class="sopt ${_st==='want'?'sx':''}" id="st-x" onclick="togSt('want')">♡ Хочу посмотреть</button></div></div>
     <div id="wsec" style="${_st==='want'?'display:none':''}">
-      <div id="rf" style="${hasSeas?'display:none':''}"><div class="flbl">Оценка</div>${slH(_rating)}${favH()}<div style="margin-top:16px"><div class="flbl">Категория</div><div class="cl" id="catlist">${catListH()}</div></div></div>
+      <div id="rf" style="${hasSeas?'display:none':''}"><div class="flbl">Оценка</div>${slH(_rating)}${favH()}</div>
       <div id="sf" style="${hasSeas?'':'display:none'}"><div class="flbl">Сезоны и оценки</div>${sH()}${favH()}</div>
+      <div style="margin-top:16px">
+        <div class="flbl">Рейтинги платформ (необязательно)</div>
+        <div class="plat-wrap">
+          <div class="plat-row">
+            <span class="plat-label">КП</span>
+            <span class="plat-num" id="kp-num">${m.kp?parseFloat(m.kp).toFixed(1):'—'}</span>
+            <input type="range" class="sl-inp" id="f-kp" min="0" max="10" step="0.1" value="${m.kp||0}" style="flex:1;background:linear-gradient(90deg,#f5c518 ${parseFloat(m.kp||0)*10}%,rgba(255,255,255,.12) ${parseFloat(m.kp||0)*10}%)" oninput="updExtRating('kp-num','f-kp',this.value,'#f5c518')">
+            <span class="plat-max">/10</span>
+          </div>
+          <div class="plat-row">
+            <span class="plat-label">IMDb</span>
+            <span class="plat-num" id="imdb-num">${m.imdb?parseFloat(m.imdb).toFixed(1):'—'}</span>
+            <input type="range" class="sl-inp" id="f-imdb" min="0" max="10" step="0.1" value="${m.imdb||0}" style="flex:1;background:linear-gradient(90deg,#f5c518 ${parseFloat(m.imdb||0)*10}%,rgba(255,255,255,.12) ${parseFloat(m.imdb||0)*10}%)" oninput="updExtRating('imdb-num','f-imdb',this.value,'#f5c518')">
+            <span class="plat-max">/10</span>
+          </div>
+        </div>
+      </div>
     </div>
     <div><div class="flbl">Жанры</div><div class="gg" id="gg">${ggH()}</div></div>
     <div><div class="flbl">Цитата или мысль (необязательно)</div><textarea class="ft" id="f-quote" placeholder="Фраза которая запомнилась...">${esc(m.quote||'')}</textarea></div>
@@ -732,7 +782,7 @@ function sub(){
   if(!title){ el.style.borderColor='var(--red)'; el.focus(); return; }
   const hasSeas2=byTId(_type)?.hasSeas===true, ac=autocat(hasSeas2?avgS(_seasons):_rating);
   const finalCats=_st==='want'?[]:(_isFav?(ac?['fav',ac]:['fav']):(ac?[ac]:[]));
-  const m={ id:eId||String(Date.now()), title:document.getElementById('f-t')?.value?.trim()||'', entitle:document.getElementById('f-en')?.value?.trim()||'', year:document.getElementById('f-y')?.value?.trim()||'', director:document.getElementById('f-d')?.value?.trim()||'', type:_type, status:_st, cats:finalCats, rating:_st==='want'?0:(hasSeas2?0:_rating), genres:[..._genres], quote:document.getElementById('f-quote')?.value?.trim()||'', note:document.getElementById('f-note')?.value?.trim()||'', seasons:hasSeas2?_seasons:[] };
+  const m={ id:eId||String(Date.now()), title:document.getElementById('f-t')?.value?.trim()||'', entitle:document.getElementById('f-en')?.value?.trim()||'', year:document.getElementById('f-y')?.value?.trim()||'', director:document.getElementById('f-d')?.value?.trim()||'', type:_type, status:_st, cats:finalCats, rating:_st==='want'?0:(hasSeas2?0:_rating), kp:(()=>{const v=parseFloat(document.getElementById('f-kp')?.value);return v?v.toFixed(1):'';})(), imdb:(()=>{const v=parseFloat(document.getElementById('f-imdb')?.value);return v?v.toFixed(1):'';})(), genres:[..._genres], quote:document.getElementById('f-quote')?.value?.trim()||'', note:document.getElementById('f-note')?.value?.trim()||'', seasons:hasSeas2?_seasons:[] };
   if(eId) M=M.map(x=>x.id===eId?m:x); else M=[m,...M];
   save(); closeM(); render(); toast(eId?'Запись обновлена':'Добавлено: '+m.title);
 }
@@ -743,7 +793,7 @@ function openDet(id){
   const cats=m.cats||[], t=byTId(m.type||'film'), meta=[m.year,m.director?`реж. ${m.director}`:null].filter(Boolean).join(' · '), er=effR(m);
   const isSer=isSeasType(m), avgSeas=isSer&&m.seasons&&m.seasons.length?avgS(m.seasons):0;
   const seasBlock=isSer&&m.seasons&&m.seasons.length?`<div class="det-seasons"><div class="det-s-hd">Сезоны</div>${m.seasons.map((s,i)=>`<div class="det-s-row"><div class="det-s-l">Сезон ${i+1}</div><div class="det-s-r">${(s.r||s.rating)?fmt(s.r||s.rating)+' /10':'—'}</div></div>`).join('')}${m.seasons.some(s=>s.r||s.rating)?`<div class="det-s-avg"><div class="det-s-avgn">${fmt(avgSeas)}</div><div class="det-s-avgl">/10 · среднее</div></div>`:''}</div>`:'';
-  showM(`<div class="mhnd"></div><div class="mhd"><div><div class="mhd-sub">${t?t.name:'О записи'}</div><div class="mhd-title">${esc(m.title)}</div></div><button class="mcls" onclick="closeM()">×</button></div><div class="det-top">${meta?`<div class="det-eyebrow">${esc(meta)}</div>`:''}<div class="det-title">${esc(m.title)}</div>${m.entitle?`<div class="det-entitle">${esc(m.entitle)}</div>`:''}${er?`<div class="det-score-row"><span class="det-score">${fmt(er)}</span><span class="det-score-max">/ 10</span></div>`:''}${cats.length?`<div class="det-cats">${cats.map(id=>{const c=byId(id); return c?`<span class="ccat cc-${c.id}">${c.name}</span>`:'';}).join('')}</div>`:''}${(m.genres||[]).length?`<div class="det-genres">${(m.genres||[]).map(g=>`<span class="cg">${g}</span>`).join('')}</div>`:''}</div>${seasBlock}<div class="det-notes">${m.quote?`<div class="det-note quote"><div class="det-note-q">"</div><div class="det-note-lbl">Цитата / мысль</div><div class="det-note-txt">${esc(m.quote)}</div></div>`:''}${m.note?`<div class="det-note personal"><div class="det-note-lbl">Заметка</div><div class="det-note-txt" style="padding-top:0">${esc(m.note)}</div></div>`:''}</div><div class="det-acts"><button class="bedit" onclick="openEdit('${m.id}')">✎ Редактировать</button></div>`);
+  showM(`<div class="mhnd"></div><div class="mhd"><div><div class="mhd-sub">${t?t.name:'О записи'}</div><div class="mhd-title">${esc(m.title)}</div></div><button class="mcls" onclick="closeM()">×</button></div><div class="det-top">${meta?`<div class="det-eyebrow">${esc(meta)}</div>`:''}<div class="det-title">${esc(m.title)}</div>${m.entitle?`<div class="det-entitle">${esc(m.entitle)}</div>`:''}${er?`<div class="det-score-row"><span class="det-score">${fmt(er)}</span><span class="det-score-max">/ 10</span>${m.kp?`<span class="det-kp">КП ${esc(m.kp)}</span>`:''}${m.imdb?`<span class="det-kp">IMDb ${esc(m.imdb)}</span>`:''}</div>`:''}${(m.genres||[]).length?`<div class="det-genres">${(m.genres||[]).map(g=>`<span class="cg">${g}</span>`).join('')}</div>`:''}</div>${seasBlock}<div class="det-notes">${m.quote?`<div class="det-note quote"><div class="det-note-q">"</div><div class="det-note-lbl">Цитата / мысль</div><div class="det-note-txt">${esc(m.quote)}</div></div>`:''}${m.note?`<div class="det-note personal"><div class="det-note-lbl">Заметка</div><div class="det-note-txt" style="padding-top:0;line-height:1.65">${esc(m.note)}</div></div>`:''}</div><div class="det-acts"><button class="bedit" onclick="openEdit('${m.id}')">✎ Редактировать</button></div>`);
 }
 
 function exportData(){
