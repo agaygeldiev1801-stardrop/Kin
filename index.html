@@ -1,8 +1,8 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Кинодневник">
@@ -38,7 +38,7 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
-html,body{height:100%;background:var(--bg);color:var(--w);font-family:var(--mn);overscroll-behavior:none;}
+html,body{height:100%;background:var(--bg);color:var(--w);font-family:var(--mn);overscroll-behavior:none;overflow-x:hidden;touch-action:pan-y;}
 #app{display:flex;flex-direction:column;height:100vh;height:100dvh;z-index:1;position:relative;}
 
 /* ─── BACKGROUND ─── */
@@ -63,7 +63,7 @@ header{flex-shrink:0;z-index:10;position:relative;padding:calc(14px + var(--safe
 .h-el{flex:1;height:1px;background:var(--g2);}
 .h-et{font-size:7px;letter-spacing:.5em;text-transform:uppercase;color:var(--w4);}
 .h-body{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;}
-.h-logo{font-family:var(--cp);font-size:52px;line-height:.82;letter-spacing:.04em;color:var(--w);display:flex;align-items:center;}
+.h-logo{font-family:var(--cp);font-size:clamp(32px,9vw,46px);line-height:.82;letter-spacing:.04em;color:var(--w);display:flex;align-items:center;}
 .h-dot{width:9px;height:9px;border-radius:50%;background:var(--fav);margin:0 4px 9px;
   box-shadow:0 0 20px rgba(255,40,0,1),0 0 40px rgba(255,40,0,.6);}
 .h-sub{font-size:7px;font-style:italic;letter-spacing:.2em;color:var(--w4);margin-top:6px;text-transform:uppercase;}
@@ -1142,7 +1142,7 @@ function exportData(){
 function importData(e){
   const file=e.target.files[0];if(!file)return;
   const r=new FileReader();
-  r.onload=ev=>{try{const d=JSON.parse(ev.target.result);if(!Array.isArray(d))throw 0;if(!confirm(`Импортировать ${d.length} записей?`))return;M=d;save();render();toast(`Импортировано: ${d.length}`);}catch{toast('Ошибка файла');}};
+  r.onload=ev=>{try{const d=JSON.parse(ev.target.result);if(!Array.isArray(d))throw 0;if(!confirm(`Импортировать ${d.length} записей? Текущие данные заменятся.`))return;const cleaned=d.map(m=>({...m,genres:(m.genres||[]).filter(g=>g!=='Анимация'&&g!=='Аниме')}));M=cleaned;save();render();toast(`Импортировано: ${d.length} записей`);}catch{toast('Ошибка файла');}};
   r.readAsText(file);e.target.value='';
 }
 
