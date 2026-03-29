@@ -63,7 +63,7 @@ header{flex-shrink:0;z-index:10;position:relative;padding:calc(14px + var(--safe
 .h-el{flex:1;height:1px;background:var(--g2);}
 .h-et{font-size:7px;letter-spacing:.5em;text-transform:uppercase;color:var(--w4);}
 .h-body{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;}
-.h-logo{font-family:var(--cp);font-size:clamp(32px,9vw,46px);line-height:.82;letter-spacing:.04em;color:var(--w);display:flex;align-items:center;}
+.h-logo{font-family:var(--cp);font-size:clamp(28px,8vw,42px);line-height:.82;letter-spacing:.04em;color:var(--w);display:flex;align-items:center;}
 .h-dot{width:9px;height:9px;border-radius:50%;background:var(--fav);margin:0 4px 9px;
   box-shadow:0 0 20px rgba(255,40,0,1),0 0 40px rgba(255,40,0,.6);}
 .h-sub{font-size:7px;font-style:italic;letter-spacing:.2em;color:var(--w4);margin-top:6px;text-transform:uppercase;}
@@ -513,7 +513,7 @@ header{flex-shrink:0;z-index:10;position:relative;padding:calc(14px + var(--safe
 /* ─── TOAST ─── */
 .toast{position:fixed;bottom:calc(94px + var(--safe-b));left:50%;transform:translateX(-50%) translateY(20px);background:var(--bg4);border:1px solid var(--g3);color:var(--w);font-family:var(--mn);font-size:8px;letter-spacing:.12em;padding:11px 22px;border-radius:24px;z-index:999;opacity:0;transition:all .3s;pointer-events:none;white-space:nowrap;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-.dir-wrap{position:relative}.dir-ac{position:absolute;top:100%;left:0;right:0;background:var(--bg4);border:1px solid var(--g3);border-top:none;z-index:50;max-height:160px;overflow-y:auto;display:none;border-radius:0 0 2px 2px}.dir-ac.open{display:block}.dir-ac-item{padding:10px 14px;font-family:var(--sf);font-size:17px;color:var(--w2);cursor:pointer;border-bottom:1px solid var(--g1)}.dir-ac-item:hover{background:var(--bg5)}
+.dir-wrap{position:relative}.dir-ac{position:absolute;top:100%;left:0;right:0;background:var(--bg4);border:1px solid var(--g3);border-top:none;border-radius:0 0 2px 2px;z-index:50;max-height:160px;overflow-y:auto;display:none}.dir-ac.open{display:block}.dir-ac-item{padding:10px 14px;font-family:var(--sf);font-size:17px;color:var(--w2);cursor:pointer;border-bottom:1px solid var(--g1)}.dir-ac-item:hover{background:var(--bg5)}
 </style>
 </head>
 <body>
@@ -552,7 +552,7 @@ header{flex-shrink:0;z-index:10;position:relative;padding:calc(14px + var(--safe
       <div class="fsec"><div class="fhd">Тип</div><div class="chips" id="fTc"></div></div>
       <div class="fsec" id="fCsec"><div class="fhd">Категория</div><div class="chips" id="fCc"></div></div>
       <div class="fsec"><div class="fhd">Жанр</div><div class="chips" id="fGc"></div></div>
-      <div class="fsec"><div class="fhd">Год</div><div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="font-family:var(--sf);font-style:italic;font-size:20px;color:var(--gold)" id="yr-from-lbl">1950</span><span style="font-family:var(--mn);font-size:8px;color:var(--w4)">—</span><span style="font-family:var(--sf);font-style:italic;font-size:20px;color:var(--gold)" id="yr-to-lbl">2025</span></div><div style="display:flex;flex-direction:column;gap:8px"><input type="range" class="rfinp" id="yr-f" min="1950" max="2025" step="1" value="1950" oninput="setYrFrom(this.value)"><input type="range" class="rfinp" id="yr-t" min="1950" max="2025" step="1" value="2025" oninput="setYrTo(this.value)"></div><div style="display:flex;justify-content:space-between;margin-top:4px"><span style="font-family:var(--mn);font-size:7px;color:var(--w4)">1950</span><span style="font-family:var(--mn);font-size:7px;color:var(--w4)">2025</span></div></div>
+      <div class="fsec"><div class="fhd">Год</div><div class="yrwrap"><input class="yri" id="yr-f" type="text" inputmode="numeric" placeholder="От" oninput="render()"><div class="yrsep">—</div><input class="yri" id="yr-t" type="text" inputmode="numeric" placeholder="До" oninput="render()"></div></div>
       <div class="fsec" id="fRsec"><div class="fhd">Минимальная оценка</div><div class="rfwrap"><div class="rfval" id="rf-lbl">Любая</div><input type="range" class="rfinp" id="rf-inp" min="0" max="10" step="0.25" value="0" oninput="setRF(this.value)" style="background:linear-gradient(90deg,var(--hall) 0%,rgba(255,255,255,.12) 0%)"></div></div>
       <div class="fsec"><div class="fhd">Сортировка</div><div class="sorts" id="fsorts"></div></div>
     </div>
@@ -760,19 +760,11 @@ function buildStats(){
   const rated=w.filter(m=>effR(m)>0);
   const avg=rated.length?(rated.reduce((s,m)=>s+effR(m),0)/rated.length):0;
   const byType={};TYPES.forEach(t=>{byType[t.id]=w.filter(m=>(m.type||'film')===t.id).length;});
-  const catDefs=[
-    {id:'hall',name:'Зал Славы',clr:'#e8a828'},
-    {id:'fav',name:'Любимое',clr:'#f06050'},
-    {id:'good',name:'Хорошо',clr:'#28c870'},
-    {id:'once',name:'Разок сойдёт',clr:'#38a8e8'},
-    {id:'lost',name:'Потерянное время',clr:'#707070'},
-    {id:'avoid',name:'Не трогай это',clr:'#9050cc'},
-  ];
+  const catDefs=[{id:'hall',name:'Зал Славы',clr:'#e8a828'},{id:'fav',name:'Любимое',clr:'#f06050'},{id:'good',name:'Хорошо',clr:'#28c870'},{id:'once',name:'Разок сойдёт',clr:'#38a8e8'},{id:'lost',name:'Потерянное время',clr:'#707070'},{id:'avoid',name:'Не трогай это',clr:'#9050cc'}];
   const catCounts={};catDefs.forEach(cd=>{catCounts[cd.id]=w.filter(m=>(m.cats||[]).includes(cd.id)).length;});
   const gMap={};w.forEach(m=>(m.genres||[]).forEach(g=>{gMap[g]=(gMap[g]||0)+1;}));
   const topG=Object.entries(gMap).sort((a,b)=>b[1]-a[1]).slice(0,8);
-  const dirMap={};
-  w.forEach(m=>{if(m.director){if(!dirMap[m.director])dirMap[m.director]={n:0,sum:0,rated:0};dirMap[m.director].n++;const r=effR(m);if(r>0){dirMap[m.director].sum+=r;dirMap[m.director].rated++;}}});
+  const dirMap={};w.forEach(m=>{if(m.director){if(!dirMap[m.director])dirMap[m.director]={n:0,sum:0,rated:0};dirMap[m.director].n++;const r=effR(m);if(r>0){dirMap[m.director].sum+=r;dirMap[m.director].rated++;}}});
   const topDirs=Object.entries(dirMap).sort((a,b)=>b[1].n-a[1].n).slice(0,6);
   const sorted=[...rated].sort((a,b)=>effR(b)-effR(a));
   const best=sorted[0],worst=sorted[sorted.length-1];
@@ -781,89 +773,22 @@ function buildStats(){
   const withIMDB=w.filter(m=>m.imdb&&effR(m)>0);
   const avgDiffIMDB=withIMDB.length?(withIMDB.reduce((s,m)=>s+(effR(m)-parseFloat(m.imdb)),0)/withIMDB.length):null;
   const typeColors={film:'var(--red)',cartoon:'var(--grn)',series:'var(--blu)',anime:'var(--gold)'};
-
-  const row=(label,value,clr)=>`<div style="display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--g1)">
-    <span style="font-family:var(--mn);font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--w4)">${label}</span>
-    <span style="font-family:var(--sf);font-style:italic;font-size:22px;color:${clr||'var(--w)'}">${value}</span>
-  </div>`;
-
+  const row=(label,value,clr)=>`<div style="display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--g1)"><span style="font-family:var(--mn);font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--w4)">${label}</span><span style="font-family:var(--sf);font-style:italic;font-size:22px;color:${clr||'var(--w)'}">${value}</span></div>`;
   document.getElementById('list').innerHTML=`<div class="stats-wrap">
-
-    <div class="bkcard">
-      <div class="sc-hd">Резервная копия</div>
-      <div class="bknote">Данные хранятся в браузере. Экспортируй перед очисткой кэша.</div>
-      <div class="bkbtns">
-        <button class="bexp" onclick="exportData()">Экспорт</button>
-        <button class="bimp" onclick="document.getElementById('bkimp').click()">Импорт</button>
-      </div>
-      <input type="file" id="bkimp" accept=".json" style="display:none" onchange="importData(event)">
+    <div class="bkcard"><div class="sc-hd">Резервная копия</div><div class="bknote">Данные хранятся в браузере. Экспортируй перед очисткой кэша.</div><div class="bkbtns"><button class="bexp" onclick="exportData()">Экспорт</button><button class="bimp" onclick="document.getElementById('bkimp').click()">Импорт</button></div><input type="file" id="bkimp" accept=".json" style="display:none" onchange="importData(event)"></div>
+    <div class="sc"><div class="sc-hd">Обзор</div>
+      ${row('Просмотрено',w.length,'var(--w)')}
+      ${row('В списке желаний',want.length,'var(--w3)')}
+      ${avg?row('Средняя оценка',fmt(avg)+' / 10',CAT_CLR[autocat(avg)]||'var(--gold)'):''}
+      ${best?row('Лучший',esc(best.title)+' · '+fmt(effR(best)),'var(--gold)'):''}
+      ${worst&&worst.id!==best?.id?row('Худший',esc(worst.title)+' · '+fmt(effR(worst)),'var(--gry)'):''}
+      ${avgDiffKP!==null?row('vs КП',(avgDiffKP>=0?'+':'')+avgDiffKP.toFixed(1),avgDiffKP>=0?'var(--grn)':'var(--red)'):''}
+      ${avgDiffIMDB!==null?row('vs IMDb',(avgDiffIMDB>=0?'+':'')+avgDiffIMDB.toFixed(1),avgDiffIMDB>=0?'var(--grn)':'var(--red)'):''}
     </div>
-
-    <!-- ГЛАВНЫЕ ЦИФРЫ -->
-    <div class="sc">
-      <div class="sc-hd">Обзор</div>
-      ${row('Просмотрено', w.length, 'var(--w)')}
-      ${row('В списке желаний', want.length, 'var(--w3)')}
-      ${avg?row('Средняя оценка', fmt(avg)+' / 10', CAT_CLR[autocat(avg)]||'var(--gold)'):''}
-      ${best?row('Лучший фильм', esc(best.title)+' · '+fmt(effR(best)), 'var(--gold)'):''}
-      ${worst&&worst.id!==best?.id?row('Худший фильм', esc(worst.title)+' · '+fmt(effR(worst)), 'var(--gry)'):''}
-      ${avgDiffKP!==null?row('Расхождение с КП', (avgDiffKP>=0?'+':'')+avgDiffKP.toFixed(1), avgDiffKP>=0?'var(--grn)':'var(--red)'):''}
-      ${avgDiffIMDB!==null?row('Расхождение с IMDb', (avgDiffIMDB>=0?'+':'')+avgDiffIMDB.toFixed(1), avgDiffIMDB>=0?'var(--grn)':'var(--red)'):''}
-    </div>
-
-    <!-- ПО ТИПАМ -->
-    <div class="sc">
-      <div class="sc-hd">По типам</div>
-      ${TYPES.filter(t=>byType[t.id]>0).map(t=>row(t.name, byType[t.id], typeColors[t.id]||'var(--w)')).join('')}
-    </div>
-
-    <!-- КАТЕГОРИИ -->
-    <div class="sc">
-      <div class="sc-hd">Категории</div>
-      ${catDefs.map(cd=>{
-        const cnt=catCounts[cd.id];
-        if(!cnt)return '';
-        const pct=w.length?Math.round(cnt/w.length*100):0;
-        return `<div style="display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--g1)">
-          <span style="font-family:var(--mn);font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:${cd.clr}">${cd.name}</span>
-          <div style="display:flex;align-items:baseline;gap:10px">
-            <span style="font-family:var(--mn);font-size:8px;color:var(--w4)">${pct}%</span>
-            <span style="font-family:var(--sf);font-style:italic;font-size:22px;color:${cd.clr}">${cnt}</span>
-          </div>
-        </div>`;
-      }).join('')}
-    </div>
-
-    <!-- ЖАНРЫ -->
-    ${topG.length?`<div class="sc">
-      <div class="sc-hd">Топ жанры</div>
-      ${topG.map(([g,n],i)=>`<div style="display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--g1)">
-        <div style="display:flex;align-items:baseline;gap:10px">
-          <span style="font-family:var(--mn);font-size:8px;color:var(--w4)">${String(i+1).padStart(2,'0')}</span>
-          <span style="font-family:var(--sf);font-size:19px;color:var(--w2)">${g}</span>
-        </div>
-        <span style="font-family:var(--sf);font-style:italic;font-size:20px;color:var(--w3)">${n}</span>
-      </div>`).join('')}
-    </div>`:''}
-
-    <!-- РЕЖИССЁРЫ -->
-    ${topDirs.length?`<div class="sc">
-      <div class="sc-hd">Режиссёры</div>
-      ${topDirs.map(([name,d],i)=>{
-        const avgR=d.rated>0?(d.sum/d.rated):0;
-        return `<div style="display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--g1)">
-          <div style="display:flex;align-items:baseline;gap:10px;min-width:0;flex:1;overflow:hidden">
-            <span style="font-family:var(--mn);font-size:8px;color:var(--w4);flex-shrink:0">${String(i+1).padStart(2,'0')}</span>
-            <span style="font-family:var(--sf);font-size:18px;color:var(--w2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(name)}</span>
-          </div>
-          <div style="display:flex;align-items:baseline;gap:8px;flex-shrink:0;margin-left:10px">
-            <span style="font-family:var(--mn);font-size:8px;color:var(--w4)">${d.n} ${d.n===1?'фильм':d.n<5?'фильма':'фильмов'}</span>
-            ${avgR?`<span style="font-family:var(--sf);font-style:italic;font-size:18px;color:${CAT_CLR[autocat(avgR)]||'var(--w4)'}">${fmt(avgR)}</span>`:''}
-          </div>
-        </div>`;
-      }).join('')}
-    </div>`:''}
-
+    <div class="sc"><div class="sc-hd">По типам</div>${TYPES.filter(t=>byType[t.id]>0).map(t=>row(t.name,byType[t.id],typeColors[t.id]||'var(--w)')).join('')}</div>
+    <div class="sc"><div class="sc-hd">Категории</div>${catDefs.map(cd=>{const cnt=catCounts[cd.id];if(!cnt)return'';const pct=w.length?Math.round(cnt/w.length*100):0;return `<div style="display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--g1)"><span style="font-family:var(--mn);font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:${cd.clr}">${cd.name}</span><div style="display:flex;align-items:baseline;gap:10px"><span style="font-family:var(--mn);font-size:8px;color:var(--w4)">${pct}%</span><span style="font-family:var(--sf);font-style:italic;font-size:22px;color:${cd.clr}">${cnt}</span></div></div>`;}).join('')}</div>
+    ${topG.length?`<div class="sc"><div class="sc-hd">Топ жанры</div>${topG.map(([g,n],i)=>`<div style="display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--g1)"><div style="display:flex;align-items:baseline;gap:10px"><span style="font-family:var(--mn);font-size:8px;color:var(--w4)">${String(i+1).padStart(2,'0')}</span><span style="font-family:var(--sf);font-size:19px;color:var(--w2)">${g}</span></div><span style="font-family:var(--sf);font-style:italic;font-size:20px;color:var(--w3)">${n}</span></div>`).join('')}</div>`:''}
+    ${topDirs.length?`<div class="sc"><div class="sc-hd">Режиссёры</div>${topDirs.map(([name,d],i)=>{const avgR=d.rated>0?(d.sum/d.rated):0;return `<div style="display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--g1)"><div style="display:flex;align-items:baseline;gap:10px;min-width:0;flex:1;overflow:hidden"><span style="font-family:var(--mn);font-size:8px;color:var(--w4);flex-shrink:0">${String(i+1).padStart(2,'0')}</span><span style="font-family:var(--sf);font-size:18px;color:var(--w2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(name)}</span></div><div style="display:flex;align-items:baseline;gap:8px;flex-shrink:0;margin-left:10px"><span style="font-family:var(--mn);font-size:8px;color:var(--w4)">${d.n} ${d.n===1?'фильм':d.n<5?'фильма':'фильмов'}</span>${avgR?`<span style="font-family:var(--sf);font-style:italic;font-size:18px;color:${CAT_CLR[autocat(avgR)]||'var(--w4)'}">${fmt(avgR)}</span>`:''}</div></div>`;}).join('')}</div>`:''}
   </div>`;
 }
 
@@ -893,8 +818,6 @@ function tFT(id){fT=fT.includes(id)?fT.filter(x=>x!==id):[...fT,id];render();}
 function tFC(id){fC=fC.includes(id)?fC.filter(x=>x!==id):[...fC,id];render();}
 function tFG(g){fG=fG.includes(g)?fG.filter(x=>x!==g):[...fG,g];render();}
 function setSort(s){sort=s;render();}
-function setYrFrom(v){const b=document.getElementById('yr-t');const bv=b?parseInt(b.value):2025;if(parseInt(v)>bv){v=String(bv);document.getElementById('yr-f').value=bv;}const l=document.getElementById('yr-from-lbl');if(l)l.textContent=v;render();}
-function setYrTo(v){const a=document.getElementById('yr-f');const av=a?parseInt(a.value):1950;if(parseInt(v)<av){v=String(av);document.getElementById('yr-t').value=av;}const l=document.getElementById('yr-to-lbl');if(l)l.textContent=v;render();}
 function setRF(v){fRmin=Math.round(parseFloat(v)*4)/4;buildFilters();buildPills();buildList();}
 function togF(){pOpen=!pOpen;document.getElementById('fpanel').classList.toggle('open',pOpen);document.getElementById('farr').classList.toggle('open',pOpen);}
 function showM(h){document.getElementById('modal').innerHTML=h;document.getElementById('ov').style.display='flex';document.body.style.overflow='hidden';}
@@ -951,6 +874,9 @@ function ggH(){return GENRES.map(g=>`<button class="gc ${_genres.includes(g)?'on
 function typeGridH(){
   return `<div class="type-grid" id="tgrid">${TYPES.map(t=>`<button class="topt ${_type===t.id?'on '+t.tc:''}" onclick="setType('${t.id}')">${t.name}</button>`).join('')}</div>`;
 }
+function getDirSuggestions(val){if(!val||val.length<2)return[];const v=val.toLowerCase();return[...new Set(M.map(m=>m.director).filter(Boolean))].filter(d=>d.toLowerCase().includes(v)).slice(0,6);}
+function showDirAC(val){const ac=document.getElementById('dir-ac');if(!ac)return;const s=getDirSuggestions(val);if(!s.length){ac.classList.remove('open');return;}ac.innerHTML=s.map(d=>`<div class="dir-ac-item" onclick="pickDir('${esc(d)}')">${esc(d)}</div>`).join('');ac.classList.add('open');}
+function pickDir(val){const i=document.getElementById('f-d');if(i)i.value=val;const ac=document.getElementById('dir-ac');if(ac)ac.classList.remove('open');}
 function setType(t){
   _type=t;_fmt='single';_seasons=[];
   document.getElementById('tgrid').outerHTML=typeGridH();
@@ -985,10 +911,8 @@ function rebuildScoreSection(){
   const t=byTId(_type);
   const isFlexType=['cartoon','anime'].includes(_type);
   const hasSeas=(t&&t.hasSeas===true)||(t&&t.hasSeas===null&&_fmt==='seasons');
-  const rf=document.getElementById('rf');
-  if(rf)rf.style.display=(hasSeas&&!isFlexType)?'none':'';
-  const sf=document.getElementById('sf');
-  if(sf)sf.style.display=hasSeas?'':'none';
+  const rf=document.getElementById('rf');if(rf)rf.style.display=(hasSeas&&!isFlexType)?'none':'';
+  const sf=document.getElementById('sf');if(sf)sf.style.display=hasSeas?'':'none';
 }
 
 /* FORM */
@@ -1009,8 +933,8 @@ function formH(m,isEdit){
     </div>
     <div><div class="flbl">Статус</div><div class="stog"><button class="sopt ${_st==='watched'?'sw':''}" id="st-w" onclick="togSt('watched')">✓ Посмотрел</button><button class="sopt ${_st==='want'?'sx':''}" id="st-x" onclick="togSt('want')">♡ Хочу посмотреть</button></div></div>
     <div id="wsec" style="${_st==='want'?'display:none':''}">
-      <div id="rf" style="${hasSeas?'display:none':''}"><div class="flbl">Оценка</div>${slH(_rating)}${favH()}</div>
-      <div id="sf" style="${hasSeas?'':'display:none'}"><div class="flbl">Сезоны и оценки</div>${swH()}</div>
+      <div id="rf" style="${hasSeas&&!(['cartoon','anime'].includes(_type))?'display:none':''}"><div class="flbl">Оценка</div>${slH(_rating)}${favH()}</div>
+      <div id="sf" style="margin-top:16px;${hasSeas?'':'display:none'}"><div class="flbl">Сезоны и оценки</div>${swH()}</div>
       <div style="margin-top:18px"><div class="flbl">Рейтинги (необязательно)</div><div style="margin-bottom:14px">
           <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px">
             <div class="kplbl" style="color:#f5c518;min-width:52px">КП</div>
@@ -1076,7 +1000,10 @@ function sub(){
   if(!title){el.style.borderColor='var(--fav)';el.focus();return;}
   const t=byTId(_type);
   const hasSeas=(t&&t.hasSeas===true)||(t&&t.hasSeas===null&&_fmt==='seasons');
-  const ac=autocat(hasSeas?avgS(_seasons):_rating);
+  const isFlexType=['cartoon','anime'].includes(_type);
+  // For cartoon/anime: use season avg if seasons exist, otherwise use _rating
+  const effectiveRating=isFlexType?(_seasons.length&&avgS(_seasons)>0?avgS(_seasons):_rating):(hasSeas?avgS(_seasons):_rating);
+  const ac=autocat(effectiveRating);
   let cats=ac?[ac]:[];
   if(_isFav){cats=ac?['fav',ac]:['fav'];}
   const m={
@@ -1086,13 +1013,13 @@ function sub(){
     director:document.getElementById('f-d')?.value?.trim()||'',
     type:_type,status:_st,
     cats:_st==='want'?[]:cats,
-    rating:_st==='want'?0:(hasSeas?0:_rating),
+    rating:_st==='want'?0:_rating,
     kp:(()=>{const v=parseFloat(document.getElementById('f-kp')?.value);return v?v.toFixed(1):'';})(),
     imdb:(()=>{const v=parseFloat(document.getElementById('f-imdb')?.value);return v?v.toFixed(1):'';})(),
     genres:[..._genres],
     quote:document.getElementById('f-quote')?.value?.trim()||'',
     note:document.getElementById('f-note')?.value?.trim()||'',
-    seasons:hasSeas?_seasons:[],
+    seasons:(hasSeas||isFlexType)?_seasons:[],
   };
   if(eId)M=M.map(x=>x.id===eId?m:x);else M=[m,...M];
   save();closeM();render();
@@ -1142,7 +1069,7 @@ function exportData(){
 function importData(e){
   const file=e.target.files[0];if(!file)return;
   const r=new FileReader();
-  r.onload=ev=>{try{const d=JSON.parse(ev.target.result);if(!Array.isArray(d))throw 0;if(!confirm(`Импортировать ${d.length} записей? Текущие данные заменятся.`))return;const cleaned=d.map(m=>({...m,genres:(m.genres||[]).filter(g=>g!=='Анимация'&&g!=='Аниме')}));M=cleaned;save();render();toast(`Импортировано: ${d.length} записей`);}catch{toast('Ошибка файла');}};
+  r.onload=ev=>{try{const d=JSON.parse(ev.target.result);if(!Array.isArray(d))throw 0;if(!confirm(`Импортировать ${d.length} записей? Текущие данные заменятся.`))return;M=d.map(m=>({...m,genres:(m.genres||[]).filter(g=>g!=='Анимация'&&g!=='Аниме')}));save();render();toast(`Импортировано: ${d.length}`);}catch{toast('Ошибка файла');}};
   r.readAsText(file);e.target.value='';
 }
 
@@ -1151,10 +1078,25 @@ if('serviceWorker' in navigator){
   const sw=`const C='kino-v16';self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>c.addAll([self.location.pathname])));self.skipWaiting();});self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==C).map(k=>caches.delete(k)))));});self.addEventListener('fetch',e=>{e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(res=>{const cl=res.clone();caches.open(C).then(c=>c.put(e.request,cl));return res;})));});`;
   navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:'application/javascript'}))).catch(()=>{});
 }
-function getDirSuggestions(val){if(!val||val.length<2)return[];const v=val.toLowerCase();return[...new Set(M.map(m=>m.director).filter(Boolean))].filter(d=>d.toLowerCase().includes(v)).slice(0,6);}
-function showDirAC(val){const ac=document.getElementById('dir-ac');if(!ac)return;const s=getDirSuggestions(val);if(!s.length){ac.classList.remove('open');return;}ac.innerHTML=s.map(d=>`<div class="dir-ac-item" onclick="pickDir('${esc(d)}')">${esc(d)}</div>`).join('');ac.classList.add('open');}
-function pickDir(val){const i=document.getElementById('f-d');if(i)i.value=val;const ac=document.getElementById('dir-ac');if(ac)ac.classList.remove('open');}
-function initSwipe(){let sx=0,sel=null,sid=null,dx=0;document.getElementById('list').addEventListener('touchstart',e=>{const card=e.target.closest('.card');if(!card)return;sx=e.touches[0].clientX;sel=card;const oc=card.getAttribute('onclick');sid=oc?oc.match(/'([^']+)'/)?.[1]:null;dx=0;},{passive:true});document.getElementById('list').addEventListener('touchmove',e=>{if(!sel)return;dx=e.touches[0].clientX-sx;if(dx<-10&&dx>-120){sel.style.transform=`translateX(${dx}px)`;sel.style.transition='none';sel.style.boxShadow=`inset -${Math.round(Math.min(1,Math.abs(dx)/80)*4)}px 0 0 var(--red)`;}},{passive:true});document.getElementById('list').addEventListener('touchend',()=>{if(!sel)return;sel.style.transition='transform .3s,box-shadow .3s,opacity .3s';if(dx<-70&&sid){sel.style.transform='translateX(-110%)';sel.style.opacity='0';setTimeout(()=>{if(confirm('Удалить запись?')){M=M.filter(x=>x.id!==sid);save();render();toast('Удалено');}else render();},300);}else{sel.style.transform='';sel.style.boxShadow='';}sel=null;sid=null;dx=0;},{passive:true});}
+
+function initSwipe(){
+  let sx=0,sel=null,sid=null,dx=0;
+  document.getElementById('list').addEventListener('touchstart',e=>{
+    const card=e.target.closest('.card');if(!card)return;
+    sx=e.touches[0].clientX;sel=card;
+    const oc=card.getAttribute('onclick');sid=oc?oc.match(/'([^']+)'/)?.[1]:null;dx=0;
+  },{passive:true});
+  document.getElementById('list').addEventListener('touchmove',e=>{
+    if(!sel)return;dx=e.touches[0].clientX-sx;
+    if(dx<-10&&dx>-120){sel.style.transform=`translateX(${dx}px)`;sel.style.transition='none';sel.style.boxShadow=`inset -${Math.round(Math.min(1,Math.abs(dx)/80)*4)}px 0 0 var(--red)`;}
+  },{passive:true});
+  document.getElementById('list').addEventListener('touchend',()=>{
+    if(!sel)return;sel.style.transition='transform .3s,box-shadow .3s,opacity .3s';
+    if(dx<-70&&sid){sel.style.transform='translateX(-110%)';sel.style.opacity='0';setTimeout(()=>{if(confirm('Удалить запись?')){M=M.filter(x=>x.id!==sid);save();render();toast('Удалено');}else render();},300);}
+    else{sel.style.transform='';sel.style.boxShadow='';}
+    sel=null;sid=null;dx=0;
+  },{passive:true});
+}
 
 buildBG();render();initSwipe();
 </script>
