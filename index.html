@@ -553,7 +553,7 @@ header{flex-shrink:0;z-index:10;position:relative;padding:calc(14px + var(--safe
       <div class="fsec" id="fCsec"><div class="fhd">Категория</div><div class="chips" id="fCc"></div></div>
       <div class="fsec"><div class="fhd">Жанр</div><div class="chips" id="fGc"></div></div>
       <div class="fsec"><div class="fhd">Год</div><div class="yrwrap"><input class="yri" id="yr-f" type="text" inputmode="numeric" placeholder="От" oninput="render()"><div class="yrsep">—</div><input class="yri" id="yr-t" type="text" inputmode="numeric" placeholder="До" oninput="render()"></div></div>
-      <div class="fsec" id="fRsec"><div class="fhd">Минимальная оценка</div><div class="rfwrap"><div class="rfval" id="rf-lbl">Любая</div><input type="range" class="rfinp" id="rf-inp" min="0" max="10" step="0.25" value="0" oninput="setRF(this.value)" style="background:linear-gradient(90deg,var(--hall) 0%,rgba(255,255,255,.12) 0%)"></div></div>
+      <div class="fsec" id="fRsec"><div class="fhd">Минимальная оценка</div><div class="rfwrap"><div class="rfval" id="rf-lbl">Любая</div><input type="range" class="rfinp" id="rf-inp" min="0" max="10" step="0.5" value="0" oninput="setRF(this.value)" style="background:linear-gradient(90deg,var(--hall) 0%,rgba(255,255,255,.12) 0%)"></div></div>
       <div class="fsec"><div class="fhd">Сортировка</div><div class="sorts" id="fsorts"></div></div>
     </div>
   </div>
@@ -831,14 +831,14 @@ function slH(r){
     <div class="sl-num" id="slnum" style="color:${col}">${v?fmt(v):'—'}</div>
     <div class="sl-right"><div class="sl-cat" id="slcat" style="color:${col}">${c?c.name:'Нет оценки'}</div>
       <div class="sl-row"><div class="sl-edge">0</div>
-        <input type="range" class="sl-inp" id="slinp" min="0" max="10" step="0.25" value="${v}"
+        <input type="range" class="sl-inp" id="slinp" min="0" max="10" step="0.5" value="${v}"
           style="background:linear-gradient(90deg,${col} ${pct}%,rgba(255,255,255,.12) ${pct}%)"
           oninput="setR(parseFloat(this.value))">
       <div class="sl-edge">10</div></div></div>
   </div></div>`;
 }
 function setR(raw){
-  const v=Math.round(raw*4)/4;_rating=v;
+  const v=Math.round(raw*2)/2;_rating=v;
   const cat=autocat(v),col=CAT_CLR[cat]||CAT_CLR[''],c=byId(cat),pct=v/10*100;
   const num=document.getElementById('slnum');if(num){num.textContent=v?fmt(v):'—';num.style.color=col;}
   const sc=document.getElementById('slcat');if(sc){sc.textContent=c?c.name:'Нет оценки';sc.style.color=col;}
@@ -857,14 +857,14 @@ function togFav(){
 function swH(){
   const avg=avgS(_seasons);
   return `<div class="sws" id="sw">
-    ${_seasons.map((s,i)=>{const col=CAT_CLR[autocat(s.r||0)]||CAT_CLR[''];const pct=(s.r||0)/10*100;return `<div class="si"><div class="si-hd"><div class="si-lbl">Сезон ${i+1}</div><div class="si-r"><div class="si-val" style="color:${col}">${s.r?fmt(s.r):'—'}</div><button class="si-del" onclick="delS(${i})">×</button></div></div><div class="si-body"><input type="range" class="si-sl" min="0" max="10" step="0.25" value="${s.r||0}" style="background:linear-gradient(90deg,${col} ${pct}%,rgba(255,255,255,.12) ${pct}%)" oninput="setSR(${i},parseFloat(this.value))"></div></div>`;}).join('')}
+    ${_seasons.map((s,i)=>{const col=CAT_CLR[autocat(s.r||0)]||CAT_CLR[''];const pct=(s.r||0)/10*100;return `<div class="si"><div class="si-hd"><div class="si-lbl">Сезон ${i+1}</div><div class="si-r"><div class="si-val" style="color:${col}">${s.r?fmt(s.r):'—'}</div><button class="si-del" onclick="delS(${i})">×</button></div></div><div class="si-body"><input type="range" class="si-sl" min="0" max="10" step="0.5" value="${s.r||0}" style="background:linear-gradient(90deg,${col} ${pct}%,rgba(255,255,255,.12) ${pct}%)" oninput="setSR(${i},parseFloat(this.value))"></div></div>`;}).join('')}
     <button class="add-s" onclick="addS()">+ Добавить сезон</button>
     ${_seasons.some(s=>s.r>0)?`<div class="avg-box"><div class="avg-n">${fmt(avg)}</div><div class="avg-l">/ 10 · среднее по сезонам</div></div>`:''}
   </div>`;
 }
 function addS(){_seasons=[..._seasons,{r:0}];document.getElementById('sw').outerHTML=swH();}
 function delS(i){_seasons=_seasons.filter((_,j)=>j!==i);document.getElementById('sw').outerHTML=swH();}
-function setSR(i,v){v=Math.round(v*4)/4;_seasons=_seasons.map((s,j)=>j===i?{r:v}:s);document.getElementById('sw').outerHTML=swH();}
+function setSR(i,v){v=Math.round(v*2)/2;_seasons=_seasons.map((s,j)=>j===i?{r:v}:s);document.getElementById('sw').outerHTML=swH();}
 
 /* CATS */
 function catListH(){return CATS.filter(c=>c.id!=='fav').map(c=>`<div class="cr ${_cats.includes(c.id)?'s-'+c.id:''}" onclick="tCat('${c.id}')"><div class="cr-num">${c.num}</div><div class="cr-body"><div class="cr-name">${c.name}</div><div class="cr-desc">${c.desc}</div><div class="cr-range">${c.range}</div></div><div class="cr-chk"><div class="cr-chk-d"></div></div></div>`).join('');}
