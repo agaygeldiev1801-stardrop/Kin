@@ -702,7 +702,7 @@ function buildList(){
     if(fG.length&&!(m.genres||[]).some(g=>fG.includes(g)))return false;
     if(fRmin>0&&effR(m)<fRmin)return false;
     if(fYf||fYt){const yr=parseInt(String(m.year||'').split('–')[0].split('-')[0])||0;if(fYf&&yr<parseInt(fYf))return false;if(fYt&&yr>parseInt(fYt))return false;}
-    if(q&&!m.title.toLowerCase().includes(q)&&!(m.entitle||'').toLowerCase().includes(q)&&!(m.director||'').toLowerCase().includes(q))return false;
+    if(q&&!m.title.toLowerCase().startsWith(q))return false;
     return true;
   });
   if(sort==='alpha')items.sort((a,b)=>a.title.localeCompare(b.title,'ru'));
@@ -1079,26 +1079,9 @@ if('serviceWorker' in navigator){
   navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:'application/javascript'}))).catch(()=>{});
 }
 
-function initSwipe(){
-  let sx=0,sel=null,sid=null,dx=0;
-  document.getElementById('list').addEventListener('touchstart',e=>{
-    const card=e.target.closest('.card');if(!card)return;
-    sx=e.touches[0].clientX;sel=card;
-    const oc=card.getAttribute('onclick');sid=oc?oc.match(/'([^']+)'/)?.[1]:null;dx=0;
-  },{passive:true});
-  document.getElementById('list').addEventListener('touchmove',e=>{
-    if(!sel)return;dx=e.touches[0].clientX-sx;
-    if(dx<-10&&dx>-120){sel.style.transform=`translateX(${dx}px)`;sel.style.transition='none';sel.style.boxShadow=`inset -${Math.round(Math.min(1,Math.abs(dx)/80)*4)}px 0 0 var(--red)`;}
-  },{passive:true});
-  document.getElementById('list').addEventListener('touchend',()=>{
-    if(!sel)return;sel.style.transition='transform .3s,box-shadow .3s,opacity .3s';
-    if(dx<-70&&sid){sel.style.transform='translateX(-110%)';sel.style.opacity='0';setTimeout(()=>{if(confirm('Удалить запись?')){M=M.filter(x=>x.id!==sid);save();render();toast('Удалено');}else render();},300);}
-    else{sel.style.transform='';sel.style.boxShadow='';}
-    sel=null;sid=null;dx=0;
-  },{passive:true});
-}
 
-buildBG();render();initSwipe();
+
+buildBG();render();
 </script>
 </body>
 </html>
