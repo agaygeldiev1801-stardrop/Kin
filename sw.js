@@ -1,28 +1,25 @@
-const CACHE_NAME='kino-v16-static';
-const URLS=['./','./index.html','./manifest.webmanifest'];
+const CACHE='kino-v17';
+const ASSETS=['./','./index.html','./manifest.webmanifest'];
 
-self.addEventListener('install',event=>{
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(cache=>cache.addAll(URLS)).then(()=>self.skipWaiting())
+self.addEventListener('install',e=>{
+  self.skipWaiting();
+  e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS).catch(()=>{})));
+});
+
+self.addEventListener('activate',e=>{
+  e.waitUntil(
+    caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())
   );
 });
 
-self.addEventListener('activate',event=>{
-  event.waitUntil(
-    caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE_NAME).map(k=>caches.delete(k)))).then(()=>self.clients.claim())
-  );
-});
-
-self.addEventListener('fetch',event=>{
-  const req=event.request;
-  if(req.method!=='GET') return;
-  event.respondWith(
-    caches.match(req).then(cached=>{
-      if(cached) return cached;
-      return fetch(req).then(res=>{
-        if(!res || res.status!==200 || req.url.startsWith('chrome-extension')) return res;
+self.addEventListener('fetch',e=>{
+  if(e.request.method!=='GET')return;
+  e.respondWith(
+    caches.match(e.request).then(hit=>{
+      if(hit)return hit;
+      return fetch(e.request).then(res=>{
         const copy=res.clone();
-        caches.open(CACHE_NAME).then(cache=>cache.put(req,copy)).catch(()=>{});
+        caches.open(CACHE).then(c=>c.put(e.request,copy)).catch(()=>{});
         return res;
       }).catch(()=>caches.match('./index.html'));
     })
