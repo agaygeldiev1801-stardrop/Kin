@@ -81,9 +81,9 @@ header{flex-shrink:0;z-index:10;position:relative;padding:calc(14px + var(--safe
 
 /* ─── TABS ─── */
 .tabs{display:flex;flex-shrink:0;z-index:10;background:rgba(7,8,13,.97);border-bottom:1px solid var(--g2);backdrop-filter:blur(16px);}
-.tab{flex:1;border:none;background:transparent;font-family:var(--mn);font-size:7.5.5px;letter-spacing:.18em;padding:14px 4px;cursor:pointer;text-transform:uppercase;color:var(--w4);border-bottom:2px solid transparent;transition:color .2s,border-color .2s;}
+.tab{flex:1;border:none;background:transparent;font-family:var(--mn);font-size:7.5px;letter-spacing:.18em;padding:14px 4px;cursor:pointer;text-transform:uppercase;color:var(--w4);border-bottom:2px solid transparent;transition:color .2s,border-color .2s;}
 .tab.on{color:var(--w);border-bottom-color:var(--fav);}
-.tc{display:inline-block;margin-left:5px;font-size:7px;background:var(--bg4);color:var(--w4);padding:2px 6px;border-radius:10px;vertical-align:middle;transition:all .2s;}
+.tc{display:inline-block;margin-left:5px;font-family:var(--mn);font-size:7px;letter-spacing:.06em;background:var(--bg4);color:var(--w4);padding:2px 6px;border-radius:10px;vertical-align:middle;transition:all .2s;}
 .tab.on .tc{background:rgba(232,72,48,.18);color:var(--fav);}
 
 /* ─── CONTROLS ─── */
@@ -195,7 +195,7 @@ header{flex-shrink:0;z-index:10;position:relative;padding:calc(14px + var(--safe
 
 /* Row 5: cats left · Любимое right */
 .c-cats{display:flex;gap:5px;flex-wrap:wrap;align-items:center;margin-bottom:4px;}
-.ccat{font-size:6.5px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:12px;color:var(--w);}
+.ccat{font-family:var(--mn);font-size:6.5px;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:12px;color:var(--w);white-space:nowrap;}
 .cc-hall{background:rgba(255,202,0,.2);border:1px solid rgba(255,202,0,.42);}
 .cc-fav {background:rgba(255,40,0,.2);border:1px solid rgba(255,40,0,.42);}
 .cc-top {background:rgba(0,200,83,.22);border:1px solid rgba(0,200,83,.5);}
@@ -297,7 +297,7 @@ header{flex-shrink:0;z-index:10;position:relative;padding:calc(14px + var(--safe
 .bexp:hover{opacity:.88;}
 .bimp{background:transparent;color:var(--w2);border:1px solid var(--g3);}
 .bimp:hover{background:rgba(255,255,255,.06);}
-.bknote{font-size:8px;color:var(--w4);line-height:1.8;}
+.bknote{font-family:var(--mn);font-size:8px;letter-spacing:.06em;color:var(--w4);line-height:1.8;}
 
 /* ─── FAB ─── */
 #fab{position:fixed;bottom:calc(22px + var(--safe-b));right:18px;width:54px;height:54px;
@@ -530,22 +530,34 @@ header{flex-shrink:0;z-index:10;position:relative;padding:calc(14px + var(--safe
 .sopt2.on.s-once{border-color:rgba(0,170,255,.5);background:rgba(0,170,255,.1);color:var(--once);}
 .sopt2.on.s-lost{border-color:rgba(120,120,120,.5);background:rgba(120,120,120,.12);color:#9a9a9a;}
 .sopt2.on.s-avoid{border-color:rgba(191,0,255,.5);background:rgba(191,0,255,.1);color:var(--avoid);}
-.strow{display:flex;justify-content:space-between;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--g1);cursor:pointer;transition:background .14s;}
+.strow{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--g1);cursor:pointer;transition:background .14s;}
 .strow:last-child{border-bottom:none;}
 .strow:hover{background:rgba(255,255,255,.03);}
-.strow-l{font-family:var(--mn);font-size:8px;letter-spacing:.16em;text-transform:uppercase;}
-.strow-r{display:flex;align-items:baseline;gap:10px;}
-.strow-pct{font-family:var(--mn);font-size:8px;color:var(--w4);}
-.strow-n{font-family:var(--sf);font-style:italic;font-size:22px;}
+.strow-l{font-family:var(--mn);font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:var(--w3);
+  min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.strow-r{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.strow-n{font-family:var(--sf);font-style:italic;font-size:22px;line-height:1;flex-shrink:0;}
+.dmode{display:flex;gap:6px;margin-bottom:12px;}
+.dbtn{flex:1;border:1px solid var(--g2);background:transparent;color:var(--w4);font-family:var(--mn);
+  font-size:7px;letter-spacing:.14em;text-transform:uppercase;padding:9px 6px;border-radius:2px;
+  cursor:pointer;transition:all .16s;}
+.dbtn:hover{border-color:var(--g3);color:var(--w2);}
+.dbtn.on{background:rgba(255,255,255,.08);color:var(--w);border-color:var(--g3);}
+.gcol-h{font-family:var(--mn);font-size:7px;letter-spacing:.18em;text-transform:uppercase;color:var(--w4);margin-bottom:8px;}
+.grow{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--g1);}
+.grow:last-child{border-bottom:none;}
+.grow-n{font-family:var(--mn);font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--w3);
+  min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.grow-v{font-family:var(--sf);font-style:italic;font-size:17px;color:var(--w2);flex-shrink:0;}
 .sc.tap{cursor:pointer;transition:border-color .16s;}
 .sc.tap:hover{border-color:var(--g3);}
-.sc-more{font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:var(--w4);margin-top:12px;text-align:right;}
+.sc-more{font-family:var(--mn);font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:var(--w4);margin-top:12px;text-align:right;}
 .dlist{padding:4px 20px 0;}
 .dl-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:11px 0;border-bottom:1px solid var(--g1);cursor:pointer;}
 .dl-row:hover{background:rgba(255,255,255,.03);}
 .dl-t{font-family:var(--sf);font-size:18px;color:var(--w2);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.dl-m{font-size:8px;color:var(--w4);flex-shrink:0;}
-.dl-empty{font-family:var(--sf);font-style:italic;font-size:17px;color:var(--w4);padding:18px 0;}
+.dl-m{font-family:var(--mn);font-size:8px;letter-spacing:.1em;color:var(--w4);flex-shrink:0;}
+.dl-empty{font-family:var(--sf);font-style:italic;font-size:17px;color:var(--w4);padding:18px 0;text-align:center;}
 .dir-wrap{position:relative}.dir-ac{position:absolute;top:100%;left:0;right:0;background:var(--bg4);border:1px solid var(--g3);border-top:none;border-radius:0 0 2px 2px;z-index:50;max-height:160px;overflow-y:auto;display:none}.dir-ac.open{display:block}.dir-ac-item{padding:10px 14px;font-family:var(--sf);font-size:17px;color:var(--w2);cursor:pointer;border-bottom:1px solid var(--g1)}.dir-ac-item:hover{background:var(--bg5)}
 </style>
 </head>
@@ -650,20 +662,33 @@ function migrate(list){
     return o;
   });
 }
+const LS=(()=>{
+  const mem={};let ok=false;
+  try{localStorage.setItem('__t','1');localStorage.removeItem('__t');ok=true;}catch(e){ok=false;}
+  return{
+    get(k){try{return ok?localStorage.getItem(k):(k in mem?mem[k]:null);}catch(e){return k in mem?mem[k]:null;}},
+    set(k,v){try{if(ok)localStorage.setItem(k,v);else mem[k]=v;}catch(e){mem[k]=v;}},
+    ok(){return ok;}
+  };
+})();
 let M=[];
 (function(){
-  const cur=localStorage.getItem('kino_v17');
-  if(cur){try{M=migrate(JSON.parse(cur));}catch(e){M=[];}return;}
-  for(const k of ['kino_v16','kino_v15','kino_v14','kino_v13','kino_v12']){
-    try{const d=localStorage.getItem(k);if(d){const p=JSON.parse(d);if(Array.isArray(p)&&p.length){M=migrate(p);localStorage.setItem('kino_v17',JSON.stringify(M));return;}}}catch(e){}
-  }
+  try{
+    const cur=LS.get('kino_v17');
+    if(cur){M=migrate(JSON.parse(cur));return;}
+    for(const k of ['kino_v16','kino_v15','kino_v14','kino_v13','kino_v12']){
+      const d=LS.get(k);
+      if(d){const p=JSON.parse(d);if(Array.isArray(p)&&p.length){M=migrate(p);LS.set('kino_v17',JSON.stringify(M));return;}}
+    }
+  }catch(e){M=[];}
 })();
 
 let tab='watched',fT=[],fC=[],fG=[],fYf='',fYt='',sort='alpha',pOpen=false;
+let dirMode='count';
 let eId=null,_st='watched',_genres=[],_cat='',_isFav=false,
     _type='film',_seasons=[];
 
-const save=()=>localStorage.setItem('kino_v17',JSON.stringify(M));
+const save=()=>LS.set('kino_v17',JSON.stringify(M));
 const byId=id=>CATS.find(c=>c.id===id);
 const byTId=id=>TYPES.find(t=>t.id===id);
 const esc=s=>String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -806,8 +831,6 @@ function buildStats(){
   const total=w.length;
   const catN={};PICK.forEach(c=>catN[c.id]=w.filter(m=>m.cat===c.id).length);
   const favN=w.filter(m=>m.fav).length;
-  const lowN=LOWER.reduce((s,id)=>s+catN[id],0);
-  const upN=UPPER.reduce((s,id)=>s+catN[id],0);
   const byType={};TYPES.forEach(t=>byType[t.id]=w.filter(m=>(m.type||'film')===t.id).length);
   const hall=w.filter(m=>m.cat==='hall');
 
@@ -817,15 +840,20 @@ function buildStats(){
   const topUp=Object.entries(gTop).sort((a,b)=>b[1]-a[1]).slice(0,5);
 
   const dirMap={};w.forEach(m=>{if(!m.director)return;(dirMap[m.director]=dirMap[m.director]||[]).push(m);});
-  const spread=Object.entries(dirMap).filter(([,l])=>l.length>1).map(([n,l])=>{
-    const rs=l.filter(m=>m.cat).map(m=>catRank(m.cat));
-    return {n,l,span:rs.length>1?Math.max(...rs)-Math.min(...rs):0};
-  }).sort((a,b)=>b.span-a.span||b.l.length-a.l.length).slice(0,6);
+  const dirAll=Object.entries(dirMap).map(([n,l])=>{
+    const rated=l.filter(m=>m.cat);
+    const avgRank=rated.length?rated.reduce((s,m)=>s+catRank(m.cat),0)/rated.length:99;
+    return {n,l,rated,avgRank};
+  }).filter(d=>d.l.length>=3);
+  const byCount=dirAll.slice().sort((a,b)=>b.l.length-a.l.length||a.avgRank-b.avgRank).slice(0,10);
+  const byQual=dirAll.filter(d=>d.rated.length>=3).sort((a,b)=>a.avgRank-b.avgRank||b.l.length-a.l.length).slice(0,10);
+  const dirList=(dirMode==='qual')?byQual:byCount;
 
   const decs={};w.forEach(m=>{const d=decadeOf(m);if(d===null)return;(decs[d]=decs[d]||[]).push(m);});
   const decList=Object.entries(decs).sort((a,b)=>b[0]-a[0]);
 
-  const row=(label,value,clr,onclick)=>`<div class="strow"${onclick?` onclick="${onclick}"`:' style="cursor:default"'}><span class="strow-l" style="color:${clr||'var(--w4)'}">${label}</span><span class="strow-r"><span class="strow-n" style="color:${clr||'var(--w)'}">${value}</span></span></div>`;
+  const row=(label,value,clr,onclick)=>`<div class="strow"${onclick?` onclick="${onclick}"`:' style="cursor:default"'}><span class="strow-l" style="color:${clr||'var(--w4)'}">${label}</span><span class="strow-n" style="color:${clr||'var(--w)'}">${value}</span></div>`;
+  const lvl=d=>{const c=PICK[Math.min(PICK.length-1,Math.max(0,Math.round(d.avgRank)))];return c?c.id:'';};
 
   document.getElementById('list').innerHTML=`<div class="sw">
     <div class="bkcard"><div class="sc-hd">Резервная копия</div><div class="bknote">Данные хранятся в браузере. Экспортируй перед очисткой кэша.</div><div class="bkbtns"><button class="bexp" onclick="exportData()">Экспорт</button><button class="bimp" onclick="document.getElementById('bkimp').click()">Импорт</button></div><input type="file" id="bkimp" accept=".json" style="display:none" onchange="importData(event)"></div>
@@ -833,50 +861,53 @@ function buildStats(){
     <div class="sc"><div class="sc-hd">Обзор</div>
       ${row('Просмотрено',total,'var(--w)')}
       ${row('В списке желаний',want.length,'var(--w3)')}
-      ${row('Любимое',favN,'var(--fav)','stDet(\'fav\')')}
-      ${row('Доля вершины',upN+' · '+pct(upN,total)+'%','var(--hall)','stDet(\'upper\')')}
-      ${row('Доля низа',lowN+' · '+pct(lowN,total)+'%','#9a9a9a','stDet(\'lower\')')}
+      ${row('Любимое',favN,'var(--fav)',"stDet('fav')")}
     </div>
 
     <div class="sc"><div class="sc-hd">Категории</div>
-      ${PICK.map(c=>{const n=catN[c.id];return `<div class="strow" onclick="stDet('cat:${c.id}')"><span class="strow-l" style="color:${catClr(c.id)}">${c.name}</span><span class="strow-r"><span class="strow-pct">${pct(n,total)}%</span><span class="strow-n" style="color:${catClr(c.id)}">${n}</span></span></div>`;}).join('')}
+      ${PICK.map(c=>row(c.name,catN[c.id],catClr(c.id),`stDet('cat:${c.id}')`)).join('')}
       <div class="sc-more">нажми строку — покажу список</div>
     </div>
 
     <div class="sc"><div class="sc-hd">По типам</div>
-      ${TYPES.filter(t=>byType[t.id]>0).map(t=>`<div class="strow" onclick="stDet('type:${t.id}')"><span class="strow-l" style="color:var(--w3)">${t.name}</span><span class="strow-r"><span class="strow-pct">${pct(byType[t.id],total)}%</span><span class="strow-n" style="color:var(--w2)">${byType[t.id]}</span></span></div>`).join('')}
+      ${TYPES.filter(t=>byType[t.id]>0).map(t=>row(t.name,byType[t.id],'var(--w2)',`stDet('type:${t.id}')`)).join('')}
     </div>
 
     <div class="sc"><div class="sc-hd">Зал Славы</div>
-      ${row('Записей',hall.length,'var(--hall)','stDet(\'cat:hall\')')}
-      <div style="margin-top:14px">
-        <button class="bexp" style="width:100%" onclick="randomFrom('hall')">⚄ Случайный из Зала Славы</button>
-      </div>
+      ${row('Записей',hall.length,'var(--hall)',"stDet('cat:hall')")}
+      <div style="margin-top:14px"><button class="bexp" style="width:100%" onclick="randomFrom('hall')">⚄ Случайный из Зала Славы</button></div>
     </div>
 
-    ${(topAll.length||topUp.length)?`<div class="sc"><div class="sc-hd">Жанры · что смотрю и что попадает наверх</div>
+    ${dirAll.length?`<div class="sc"><div class="sc-hd">Режиссёры</div>
+      <div class="dmode">
+        <button class="dbtn ${dirMode==='count'?'on':''}" onclick="setDirMode('count')">Больше всего</button>
+        <button class="dbtn ${dirMode==='qual'?'on':''}" onclick="setDirMode('qual')">Самые высокие</button>
+      </div>
+      ${dirList.length?dirList.map(d=>`<div class="strow" onclick="stDet('dir:${encodeURIComponent(d.n)}')"><span class="strow-l">${esc(d.n)}</span><span class="strow-r"><span class="ccat cc-${lvl(d)}">${catName(lvl(d))}</span><span class="strow-n" style="color:var(--w2)">${d.l.length}</span></span></div>`).join(''):'<div class="dl-empty">Пока мало данных</div>'}
+      <div class="sc-more">от трёх записей</div>
+    </div>`:''}
+
+    ${(topAll.length||topUp.length)?`<div class="sc"><div class="sc-hd">Жанры</div>
       <div style="display:flex;gap:0">
         <div style="flex:1;padding-right:14px">
-          <div style="font-size:7px;letter-spacing:.18em;text-transform:uppercase;color:var(--w4);margin-bottom:8px">Всего</div>
-          ${topAll.map(([g,n])=>`<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--g1)"><span style="font-family:var(--sf);font-size:16px;color:var(--w2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${g}</span><span style="font-size:9px;color:var(--w4);margin-left:8px">${n}</span></div>`).join('')||'<div class="dl-empty">—</div>'}
+          <div class="gcol-h">Всего</div>
+          ${topAll.map(([g,n])=>`<div class="grow"><span class="grow-n">${g}</span><span class="grow-v">${n}</span></div>`).join('')||'<div class="dl-empty">—</div>'}
         </div>
         <div style="flex:1;padding-left:14px;border-left:1px solid var(--g1)">
-          <div style="font-size:7px;letter-spacing:.18em;text-transform:uppercase;color:var(--hall);margin-bottom:8px">В вершине</div>
-          ${topUp.map(([g,n])=>`<div style="display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--g1)"><span style="font-family:var(--sf);font-size:16px;color:var(--w2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${g}</span><span style="font-size:9px;color:var(--w4);margin-left:8px">${n}</span></div>`).join('')||'<div class="dl-empty">—</div>'}
+          <div class="gcol-h" style="color:var(--hall)">В вершине</div>
+          ${topUp.map(([g,n])=>`<div class="grow"><span class="grow-n">${g}</span><span class="grow-v">${n}</span></div>`).join('')||'<div class="dl-empty">—</div>'}
         </div>
       </div>
       <div class="sc-more" onclick="stDet('genres')" style="cursor:pointer">все жанры →</div>
     </div>`:''}
 
-    ${spread.length?`<div class="sc"><div class="sc-hd">Режиссёры · где мнение разошлось</div>
-      ${spread.map(d=>`<div class="strow" onclick="stDet('dir:${encodeURIComponent(d.n)}')"><span class="strow-l" style="color:var(--w2);font-family:var(--sf);font-size:17px;letter-spacing:0;text-transform:none">${esc(d.n)}</span><span class="strow-r"><span class="strow-pct">${d.l.length} ${d.l.length===1?'запись':d.l.length<5?'записи':'записей'}</span><span style="display:flex;gap:3px">${d.l.filter(m=>m.cat).slice(0,6).map(m=>`<span style="width:7px;height:7px;border-radius:50%;background:${catClr(m.cat)}"></span>`).join('')}</span></span></div>`).join('')}
-    </div>`:''}
-
-    ${decList.length?`<div class="sc"><div class="sc-hd">Десятилетия · доля попадания наверх</div>
-      ${decList.map(([d,l])=>{const u=l.filter(m=>UPPER.includes(m.cat)).length;return `<div class="strow" onclick="stDet('dec:${d}')"><span class="strow-l" style="color:var(--w3)">${d}-е</span><span class="strow-r"><span class="strow-pct">${l.length} шт</span><span class="strow-n" style="color:${u/l.length>=.5?'var(--hall)':'var(--w2)'}">${pct(u,l.length)}%</span></span></div>`;}).join('')}
+    ${decList.length?`<div class="sc"><div class="sc-hd">Десятилетия</div>
+      ${decList.map(([d,l])=>row(d+'-е',l.length,'var(--w2)',`stDet('dec:${d}')`)).join('')}
     </div>`:''}
   </div>`;
 }
+
+function setDirMode(m){dirMode=m;buildStats();}
 
 function randomFrom(catId){
   const pool=W().filter(m=>m.cat===catId);
@@ -900,7 +931,7 @@ function stDet(key){
     const gTop={};w.filter(m=>UPPER.includes(m.cat)).forEach(m=>(m.genres||[]).forEach(g=>gTop[g]=(gTop[g]||0)+1));
     const rows=Object.entries(gAll).sort((a,b)=>b[1]-a[1]).map(([g,n])=>{
       const u=gTop[g]||0;
-      return `<div class="dl-row" onclick="stDet('genre:${encodeURIComponent(g)}')"><span class="dl-t">${g}</span><span class="dl-m">${n} · наверх ${pct(u,n)}%</span></div>`;
+      return `<div class="dl-row" onclick="stDet('genre:${encodeURIComponent(g)}')"><span class="dl-t">${g}</span><span class="dl-m">${n} · в вершине ${u}</span></div>`;
     }).join('');
     showM(`<div class="mhnd"></div>
       <div class="mhd"><div><div class="mhd-sub">Статистика</div><div class="mhd-title">Жанры</div></div><button class="mcls" onclick="closeM()">×</button></div>
@@ -1110,7 +1141,12 @@ if('serviceWorker' in navigator){
 
 
 
-buildBG();render();
+window.addEventListener('error',function(e){
+  try{const t=document.getElementById('toast');t.textContent='Сбой: '+(e.message||'ошибка');t.classList.add('show');}catch(_){}
+});
+try{buildBG();render();}catch(e){
+  document.getElementById('list').innerHTML='<div class="empty"><div class="empty-g">!</div><div class="empty-t">Сбой при запуске<br>'+String(e.message||e)+'</div></div>';
+}
 </script>
 </body>
 </html>
